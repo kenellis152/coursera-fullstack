@@ -7,7 +7,7 @@
   LunchCheckController.$inject = ['$scope'];
   function LunchCheckController($scope){
 
-    $scope.lunchinput = "list comma separated dishes you usually have for lunch";
+    $scope.lunchinput = "";
     $scope.buttontext = "Check if too much";
     $scope.output = "waiting for input...";
     $scope.color = "red";
