@@ -69,7 +69,7 @@ function MenuSearchService($http, ApiBasePath){
     return promise.then(function (response) {
       var foundItems = [];
       for(var i = 0; i < response.data.menu_items.length; i++){
-        var name = response.data.menu_items[i].name;
+        var name = response.data.menu_items[i].description;
         if(name.toLowerCase().indexOf(service.searchFor.toLowerCase()) != -1){
           foundItems.push(response.data.menu_items[i]);
         }
