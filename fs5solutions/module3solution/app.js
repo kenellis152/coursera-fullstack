@@ -32,19 +32,21 @@ function FoundItemsDirectiveController(){
 NarrowItDownController.$inject = ['MenuSearchService'];
 function NarrowItDownController(MenuSearchService){
   var ctrl = this;
+  ctrl.found = [];
 
   ctrl.doSearch = function( searchTerm ){
     if(searchTerm === undefined || searchTerm === ""){
-      ctrl.errorMessage = "Enter something!";
+      ctrl.errorMessage = "Nothing found";
       ctrl.found = [];
     }
     else{
       ctrl.errorMessage = "";
       var promise = MenuSearchService.getMatchedMenuItems(searchTerm);
-      console.log("value is " + promise.value + " and promise is " + promise);
       promise.then(function (response) {
         ctrl.found = response;
-        console.log(ctrl.found);
+        if(ctrl.found.length === 0){
+          ctrl.errorMessage = "Nothing found";
+        }
       });
     }
   }
@@ -57,7 +59,6 @@ function NarrowItDownController(MenuSearchService){
 MenuSearchService.$inject = ['$http', 'ApiBasePath'];
 function MenuSearchService($http, ApiBasePath){
   var service = this;
-
   service.getMatchedMenuItems = function(searchTerm){
     service.searchFor = searchTerm;
     var promise = $http({
@@ -67,19 +68,15 @@ function MenuSearchService($http, ApiBasePath){
 
     return promise.then(function (response) {
       var foundItems = [];
-      //console.log(response.data.menu_items);
       for(var i = 0; i < response.data.menu_items.length; i++){
         var name = response.data.menu_items[i].name;
-        //console.log(name);
         if(name.toLowerCase().indexOf(service.searchFor.toLowerCase()) != -1){
           foundItems.push(response.data.menu_items[i]);
         }
       }
-       console.log("found items is " + foundItems);
       return foundItems;
     });
-    // console.log("newpromise is " + newpromise);
-    // return newpromise;
+
   }//end getMatchedMenuItems
 
   service.removeItem = function (itemIndex) {
