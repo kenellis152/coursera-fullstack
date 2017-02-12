@@ -1,0 +1,8 @@
+<div>
+  <ol>
+    <ul ng-repeat="item in directive.itemList">
+      <button ng-click="directive.onRemove({index: $index});">Dont want this one!</button>
+      Name: {{ item.name }} -- Short Name: {{ item.short_name }} -- Desc: {{ item.description}}
+    </ul>
+  </ol>
+</div>
