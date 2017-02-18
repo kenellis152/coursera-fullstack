@@ -1,0 +1,7 @@
+<table class="table table-striped">
+  <th>Name</th><th ng-if="$ctrl.items[0].description">Description</th>
+  <tr ng-repeat="item in $ctrl.items">
+    <td>{{item.name}}</td>
+    <td ng-if="item.description">{{item.description}}</td>
+  </tr>
+</table>

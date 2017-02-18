@@ -1,0 +1,10 @@
+h1 {
+  margin-bottom: 30px;
+}
+.categoriesList{
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.categoriesList:hover{
+  background-color: teal;
+}
