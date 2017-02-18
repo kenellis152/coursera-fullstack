@@ -2,7 +2,7 @@
 'use strict';
 
 angular.module('MenuApp')
-.component('categoryItemTable', {
+.component('items', {
   templateUrl: 'src/menuapp/templates/categoryitemtable.template.html',
   bindings: {
     items: '<'
